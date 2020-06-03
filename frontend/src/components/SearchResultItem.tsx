@@ -109,7 +109,6 @@ export const SearchResultItem: React.SFC<SearchResultItemProps> = ({
   link,
 }) => {
 
-  const card:any = <text-card></text-card>
 
 
   return (

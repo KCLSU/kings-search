@@ -1,26 +1,16 @@
-import React, { DetailedHTMLProps, HTMLAttributes }  from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { SearchApp } from './components/SearchApp';
-import { applyPolyfills, defineCustomElements, JSX as LocalJSX } from 'kclsu-components/loader';
-
-
-type StencilProps<T> = {
-    [P in keyof T]?: Omit<T[P], 'ref'> | HTMLAttributes<T>;
-};
-
-type ReactProps<T> = {
-    [P in keyof T]?: DetailedHTMLProps<HTMLAttributes<T[P]>, T[P]>;
-};
-
-type StencilToReact<T = LocalJSX.IntrinsicElements, U = HTMLElementTagNameMap> = StencilProps<T> &
-    ReactProps<U>;
+import { applyPolyfills, defineCustomElements} from 'kclsu-components/loader';
+import {Components as Some} from 'kclsu-components/loader'
 
 declare global {
-    // eslint-disable-next-line @typescript-eslint/no-namespace
-    export namespace JSX {
-        interface IntrinsicElements extends StencilToReact { }
+    namespace JSX {
+      interface IntrinsicElements {
+        "text-card": Some.TextCardAttributes;
+      }
     }
-}
+  }
 
 ReactDOM.render(<SearchApp />, document.querySelector('.search-app-root'));
 applyPolyfills().then(() => {
