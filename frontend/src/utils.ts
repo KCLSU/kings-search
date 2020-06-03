@@ -1,7 +1,7 @@
 import { Result, SearchResultForm } from './types';
 
 export function getForm(result: Result) {
-  if (result.link.startsWith('/group') && (/.*\d{4,}.$/).test(result.link)) {
+  if (result.link.startsWith('/group')) {
     return SearchResultForm.StudentGroup;
   }
 
