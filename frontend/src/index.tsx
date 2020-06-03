@@ -13,6 +13,5 @@ declare global {
   }
 
 ReactDOM.render(<SearchApp />, document.querySelector('.search-app-root'));
-applyPolyfills().then(() => {
+
     defineCustomElements(window);
-});
