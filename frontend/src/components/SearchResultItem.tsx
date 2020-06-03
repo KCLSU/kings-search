@@ -3,6 +3,7 @@ import styled from 'react-emotion';
 import { SearchResultForm } from '../types';
 import { formLangs } from '../utils';
 import {COLORS, SIZES} from '../constants';
+import 'kclsu-components';
 
 export const Container = styled('li')`
   width: 220px;
@@ -106,14 +107,25 @@ export const SearchResultItem: React.SFC<SearchResultItemProps> = ({
   form,
   description,
   link,
-}) => (
+}) => {
+
+  const card:any = <text-card></text-card>
+
+
+  return (
   <Container>
-    <ContainerLink href={link}>
-      <InfoBox>
+
+    {/* <ContainerLink href={link}> */}
+        <text-card
+          cardtitle={title}
+          link={link}
+          subtext={formLangs(form)}
+        ></text-card>
+      {/* <InfoBox>
         <Title>{title}</Title>
         {description && <Description>{description}</Description>}
-      </InfoBox>
-      <Form>{formLangs(form)}</Form>
-    </ContainerLink>
+      </InfoBox> */}
+      {/* <Form>{formLangs(form)}</Form>
+    </ContainerLink> */}
   </Container>
-);
+)};
