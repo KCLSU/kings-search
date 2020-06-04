@@ -7,7 +7,7 @@ import {COLORS, SIZES} from '../constants';
 export const Container = styled('li')`
   width: 220px;
   min-width: 160px;
-  height: 110px;
+  height: 145px;
   padding: 5px;
   background: #fff;
   position: relative;
@@ -108,13 +108,13 @@ export const Description = styled('div')`
 `;
 
 export const Form = styled('div')`
-  color: ${COLORS.TEAL};
+  color: ${COLORS.DARK};
   font-weight:bold;
   text-align: center;
   box-sizing: border-box;
   padding: ${SIZES.E1};
   text-transform: capitalize;;
-  font-size: ${SIZES.E3};
+  font-size: 14px;
 
   .isMobile & {
     display: none;
