@@ -8,7 +8,7 @@ import {COLORS, SIZES} from '../constants';
 const AreaTitle = styled('h2')`
   text-align: left;
   font-size: ${SIZES.E3};
-  color: ${COLORS.GREY};
+  color: ${COLORS.DARK};
 `;
 
 const HLContainer = styled('div')`
@@ -55,12 +55,16 @@ const HList = styled('ul')`
   margin: 0;
   position: relative;
   padding: 0;
+  list-style-type: none;
+  height: 180px;
+  overflow-y: hidden;
 
   li {
     margin-right: ${SIZES.E3};
+    list-style: none;
 
     &:last-child {
-      padding-right: 80px;
+      padding-right: 0px;
     }
   }
 `;
@@ -96,39 +100,23 @@ export const MobileSearchResults: React.SFC<MobileSearchResultsProps> = ({
     )
   }
 
+  const renderSearchResults = (field:any, fieldName:any) => (
+    <div>
+      <AreaTitle>{fieldName}</AreaTitle>
+      <HLContainer>
+        <HList>{data[field].map(itemRenderer.bind(null, data))}</HList>
+      </HLContainer>
+    </div>
+  )
+
   return (
     <div className="isMobile">
       <Container>
-        <div>
-          <AreaTitle>Top results</AreaTitle>
-          <HLContainer>
-            <HList>{data.top.map(itemRenderer.bind(null, data))}</HList>
-          </HLContainer>
-        </div>
-        <div>
-          <AreaTitle>Pages</AreaTitle>
-          <HLContainer>
-            <HList>{data.pages.map(itemRenderer.bind(null, data))}</HList>
-          </HLContainer>
-        </div>
-        <div>
-          <AreaTitle>Student Groups</AreaTitle>
-          <HLContainer>
-            <HList>{data.groups.map(itemRenderer.bind(null, data))}</HList>
-          </HLContainer>
-        </div>
-        <div>
-          <AreaTitle>Events</AreaTitle>
-          <HLContainer>
-            <HList>{data.events.map(itemRenderer.bind(null, data))}</HList>
-          </HLContainer>
-        </div>
-        <div>
-          <AreaTitle>News</AreaTitle>
-          <HLContainer>
-            <HList>{data.news.map(itemRenderer.bind(null, data))}</HList>
-          </HLContainer>
-        </div>
+          {data.top.length > 0 && renderSearchResults('top', 'Top Resullts')}
+          {data.pages.length > 0 && renderSearchResults('pages', 'Pages')}
+          {data.groups.length > 0 && renderSearchResults('groups', 'Student Groups')}
+          {data.events.length > 0 && renderSearchResults('events', 'Events')}
+          {data.news.length > 0 && renderSearchResults('news', 'News')}
       </Container>
     </div>
   );

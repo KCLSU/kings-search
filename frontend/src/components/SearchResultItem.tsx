@@ -6,10 +6,28 @@ import {COLORS, SIZES} from '../constants';
 
 export const Container = styled('li')`
   width: 220px;
-  height: 220px;
-  font-size: 22px;
-  display: flex;
-  flex: 0 0 auto;
+  min-width: 200px;
+  height: 145px;
+  padding: 5px;
+  background: #fff;
+  position: relative;
+  -webkit-box-shadow: 0.5px 3px 5px 0px rgba(0,0,0,0.15);
+  -moz-box-shadow: .5px 3px 5px 0px rgba(0,0,0,0.15);
+  box-shadow: 0.5px 3px 5px 0px rgba(0,0,0,0.15);
+  border: 1px solid #eaeaea;
+  transition: box-shadow 0.5s;
+  margin-top: 10px; 
+
+  &::before {
+    content: "";
+    background: #5EBDB0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+  }
+  
 `;
 
 export const ContainerLink = styled('a')`
@@ -17,7 +35,9 @@ export const ContainerLink = styled('a')`
   text-decoration: none;
   width: 100%;
   height: 100%;
-  background-color: ${COLORS.PURPLE};
+  background-color: transparent;
+  justify-content: flex-start;
+  align-items: flex-start;
   padding: 4px;
   flex-direction: column;
   box-sizing: border-box;
@@ -29,10 +49,11 @@ export const InfoBox = styled('div')`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  min-width: 180px;
 `;
 
 export const Title = styled('h3')`
-  color: ${COLORS.TEAL};
+  color: ${COLORS.PURPLE};
   text-align: center;
   box-sizing: border-box;
   font-size: ${SIZES.E3};
@@ -51,6 +72,11 @@ export const Description = styled('div')`
   flex-grow: 1;
   line-height: normal;
   height: 100px;
+  transition: box-shadow 0.5s ease-in;
+
+  &:hover {
+    box-shadow: 6px 5px 5px 0px rgba(0,0,0,0.15);
+  }
 
   &::after {
     content: '';
@@ -82,16 +108,14 @@ export const Description = styled('div')`
 `;
 
 export const Form = styled('div')`
-  color: #ffffff;
+  color: ${COLORS.DARK};
+  font-weight:bold;
   text-align: center;
   box-sizing: border-box;
   padding: ${SIZES.E1};
-  text-transform: uppercase;
-  font-size: ${SIZES.E4};
+  text-transform: capitalize;;
+  font-size: 14px;
 
-  .isMobile & {
-    display: none;
-  }
 `;
 
 interface SearchResultItemProps {
@@ -104,14 +128,13 @@ interface SearchResultItemProps {
 export const SearchResultItem: React.SFC<SearchResultItemProps> = ({
   title,
   form,
-  description,
+  // description,
   link,
 }) => (
   <Container>
     <ContainerLink href={link}>
       <InfoBox>
         <Title>{title}</Title>
-        {description && <Description>{description}</Description>}
       </InfoBox>
       <Form>{formLangs(form)}</Form>
     </ContainerLink>
